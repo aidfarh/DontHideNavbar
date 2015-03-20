@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+     <CheckBoxPreference
+        android:key="pref_immersive"
+        android:title="Immersive Mode"
+        android:summary="Disable hiding navigation bar in Immersive mode"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="pref_lean_back"
+        android:title="Lean Back Mode"
+        android:summary="Disable hiding navigation bar in Lean Back mode"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="pref_lights_out"
+        android:title="Lights Out Mode"
+        android:summary="Disable dimming navigation buttons in Lights Out mode"
+        android:defaultValue="false" />
+
+</PreferenceScreen>
