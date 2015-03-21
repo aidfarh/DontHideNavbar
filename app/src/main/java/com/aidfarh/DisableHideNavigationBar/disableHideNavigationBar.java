@@ -1,14 +1,18 @@
 package com.aidfarh.DisableHideNavigationBar;
 
-import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import de.robv.android.xposed.IXposedHookZygoteInit;
+import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedHelpers;
+import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
+
 import android.view.View;
 
-public class disableHideNavigationBar implements IXposedHookZygoteInit {
+public class disableHideNavigationBar implements IXposedHookLoadPackage {
 
-    public void initZygote(StartupParam startupParam) throws Throwable {
-        findAndHookMethod("com.android.server.wm.WindowState", null, "getSystemUiVisibility",
+    public void handleLoadPackage (final LoadPackageParam lpparam) throws Throwable {
+        if (!lpparam.packageName.equals("android"))
+            return;
+        XposedHelpers.findAndHookMethod("com.android.server.wm.WindowState", lpparam.classLoader, "getSystemUiVisibility",
                 new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
